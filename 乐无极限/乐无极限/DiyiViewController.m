@@ -11,6 +11,9 @@
 #import "NewsModel.h"
 #import "NewsViewController.h"
 #import <UIImageView+WebCache.h>
+#import <MJRefresh.h>
+#import <AFNetworking.h>
+#import "NSObject+MJKeyValue.h"
 #define ScreenWidth    [[UIScreen mainScreen] bounds].size.width
 #define ScreenHeight   [[UIScreen mainScreen] bounds ].size.height
 
@@ -19,34 +22,52 @@
 @property(nonatomic,strong)UITableView *tabelView1;
 @property(nonatomic,strong)NSMutableArray *array;
 @property(nonatomic,assign)int temp;
+@property(nonatomic,strong)AFHTTPSessionManager *manager;
+
 @end
 
 @implementation DiyiViewController
+-(AFHTTPSessionManager *)manager{
+    if (_manager ==nil) {
+        _manager =[AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self data];
     [self view1];
-    
 }
 -(void)view1{
-  
+    
+    
     [self.view addSubview:self.view11111];
-    self.tabelView1 =[[UITableView alloc] initWithFrame:CGRectMake(0, 84, ScreenWidth, ScreenHeight-104) style:(UITableViewStylePlain)];
+    self.tabelView1 =[[UITableView alloc] initWithFrame:CGRectMake(0, 84, ScreenWidth, ScreenHeight-120) style:(UITableViewStylePlain)];
     [self.view addSubview:self.tabelView1];
     [self.tabelView1 registerClass:[NewsCell class] forCellReuseIdentifier:@"newscell"];
     self.tabelView1.delegate=self;
     self.tabelView1.dataSource =self;
+    //上刷新
+    self.tabelView1 .mj_header =[MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
+    //下加载
+    self.tabelView1 .mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(abc)];
+}
+-(void)loadNew{
+    self.temp =0;
+    [self data];
+}
+-(void)abc{
+    self.temp+=25;
+    [self data];
     
 }
-
 -(void)data{
-    self.array =[NSMutableArray array];
-    if (self.temp !=0) {
-        self.temp+=20;
-        
+    if (self.temp ==0) {
+        self.array =[NSMutableArray array];
     }
+
     NSURLSession *session =[NSURLSession sharedSession];
     //创建url
     NSString *urlstring =[NSString stringWithFormat:@"http://c.m.163.com/nc/article/list/T1348648517839/%d-20.html",self.temp];
@@ -57,6 +78,7 @@
         [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *dic =[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
         NSArray *arr =dic[@"T1348648517839"];
+        NSMutableArray *arrrrr =[NSMutableArray array];
         for (NSDictionary *dic1 in arr) {
             NewsModel *model =[[NewsModel alloc] init];
             
@@ -65,15 +87,20 @@
             if (model.url ==nil) {
                 
             }else{
-                [self.array addObject:model];
+                [arrrrr addObject:dic1];
                 
             }
-            
-            
+          
         }
+        NSArray *aaaaa =[NewsModel mj_objectArrayWithKeyValuesArray:arrrrr];
+        [self.array addObjectsFromArray:aaaaa];
         //返回主线程
         dispatch_async(dispatch_get_main_queue(), ^{
+
+            [self.tabelView1.mj_header endRefreshing];
+            [self.tabelView1.mj_footer endRefreshing];
             [self.tabelView1 reloadData];
+
         });
     }];
     
