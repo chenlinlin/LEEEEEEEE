@@ -11,6 +11,7 @@
 #import "SecontViewController.h"
 #import "ThirdViewController.h"
 #import "FourthViewController.h"
+#import "FifthViewController.h"
 @interface ViewController ()
 
 @end
@@ -19,38 +20,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+    
+    
+    
+
+}
+
+- (void)viewWillAppear:(BOOL)animated{
     FirstViewController *first =[[FirstViewController alloc] init];
     SecontViewController *secont =[[SecontViewController alloc] init];
     ThirdViewController *third =[[ThirdViewController alloc] init];
     FourthViewController *fourth =[[FourthViewController alloc]init];
-    first.tabBarItem.title =@"第一个";
-    secont.tabBarItem.title =@"第二个";
-    third.tabBarItem.title =@"第三个";
-    fourth.tabBarItem.title =@"第四个";
+    FifthViewController *fifth = [[FifthViewController alloc]init];
+    first.tabBarItem.title =@"精选";
+    secont.tabBarItem.title =@"导航";
+    third.tabBarItem.title =@"Vip交友";
+    fourth.tabBarItem.title =@"文学";
+    fifth.tabBarItem.title = @"我的";
     first.tabBarItem.image =[UIImage imageNamed:@"movie"];
-     secont.tabBarItem.image =[UIImage imageNamed:@"movie"];
-     third.tabBarItem.image =[UIImage imageNamed:@"movie"];
-     fourth.tabBarItem.image =[UIImage imageNamed:@"movie"];
-  UINavigationController *firstNC = [[UINavigationController alloc] initWithRootViewController:first];
+    secont.tabBarItem.image =[UIImage imageNamed:@"movie"];
+    third.tabBarItem.image =[UIImage imageNamed:@"movie"];
+    fourth.tabBarItem.image =[UIImage imageNamed:@"movie"];
+    fifth.tabBarItem.image = [UIImage imageNamed:@"movie"];
+    UINavigationController *firstNC = [[UINavigationController alloc] initWithRootViewController:first];
     UINavigationController *secontNC = [[UINavigationController alloc] initWithRootViewController:secont];
     UINavigationController *thirdNC = [[UINavigationController alloc] initWithRootViewController:third];
     UINavigationController *fourthNC = [[UINavigationController alloc] initWithRootViewController:fourth];
-    self.viewControllers =@[firstNC,secontNC,thirdNC,fourthNC];
+    UINavigationController *fifthNC = [[UINavigationController alloc] initWithRootViewController:fifth];
+    self.viewControllers =@[firstNC,secontNC,thirdNC,fourthNC,fifthNC];
     NSLog(@"fdgdfgdfgdfgdf");
     NSLog(@"fdgdfgdfgdfgdf");
     NSLog(@"fdgdfgdfgdfgdf");
     NSLog(@"fdgdfgdfgdfgdf");
     NSLog(@"fdgdfgdfgdfgdf");
     NSLog(@"fdgdfgdfgdfgdf");
-
-    
     NSLog(@"fdgdfgdfgdfgdf");
-    
-    
-    
-    
-    
-    
     
     
 }

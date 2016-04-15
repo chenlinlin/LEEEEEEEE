@@ -1,0 +1,1 @@
+../../../FMDBx/FMDBx/Classes/FMXColumnMap.h
