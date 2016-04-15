@@ -36,6 +36,12 @@
     UINavigationController *thirdNC = [[UINavigationController alloc] initWithRootViewController:third];
     UINavigationController *fourthNC = [[UINavigationController alloc] initWithRootViewController:fourth];
     self.viewControllers =@[firstNC,secontNC,thirdNC,fourthNC];
+    NSLog(@"fdgdfgdfgdfgdf");
+    NSLog(@"fdgdfgdfgdfgdf");
+    NSLog(@"fdgdfgdfgdfgdf");
+    NSLog(@"fdgdfgdfgdfgdf");
+    NSLog(@"fdgdfgdfgdfgdf");
+    NSLog(@"fdgdfgdfgdfgdf");
 
     
     NSLog(@"fdgdfgdfgdfgdf");
