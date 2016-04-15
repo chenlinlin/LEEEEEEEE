@@ -1,2 +1,3 @@
-pod 'FMDBx', '~> 0.7.0'
-pod 'FMDB', '~> 2.6.2'
+   pod 'SDWebImage', '~> 3.7.5'
+   pod 'FMDB', '~> 2.6'
+

@@ -52,6 +52,7 @@
     DierViewController*view2 =[[DierViewController alloc] init];
     DisanViewController *view3 =[[DisanViewController alloc] init];
     DisiViewController *view4 =[[DisiViewController alloc] init];
+   
     [self addChildViewController:view1];
     [self addChildViewController:view2];
     [self addChildViewController:view3];
@@ -73,9 +74,10 @@
     UIView *titlesView =[[UIView alloc] init];
     titlesView.backgroundColor =[UIColor greenColor];
     
-    titlesView.frame =CGRectMake(0,20, ScreenWidth, 44);
-    [self.navigationController.view addSubview: titlesView];
+    titlesView.frame =CGRectMake(0,64, ScreenWidth, 20);
+    [self.view addSubview: titlesView];
     self.titlesView =titlesView;
+    
     //底部红色指示器
     self.indicatyorView =[[UIView alloc] init];
     
