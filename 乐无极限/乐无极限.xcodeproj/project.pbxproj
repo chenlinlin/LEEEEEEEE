@@ -25,6 +25,10 @@
 		C2114C201CC08206008226DA /* DisanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C1F1CC08206008226DA /* DisanViewController.m */; };
 		C2114C231CC08217008226DA /* DisiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C221CC08217008226DA /* DisiViewController.m */; };
 		C2114C271CC082C3008226DA /* UIView+XMGext.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C261CC082C3008226DA /* UIView+XMGext.m */; };
+		C2114C311CC100C5008226DA /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C301CC100C5008226DA /* NewsCell.m */; };
+		C2114C341CC100D9008226DA /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C331CC100D9008226DA /* NewsModel.m */; };
+		C2114C371CC10771008226DA /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C361CC10771008226DA /* NewsViewController.m */; };
+		C2114C3A1CC10D11008226DA /* NSString+Html.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C391CC10D11008226DA /* NSString+Html.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +65,14 @@
 		C2114C221CC08217008226DA /* DisiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisiViewController.m; sourceTree = "<group>"; };
 		C2114C251CC082C3008226DA /* UIView+XMGext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XMGext.h"; sourceTree = "<group>"; };
 		C2114C261CC082C3008226DA /* UIView+XMGext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XMGext.m"; sourceTree = "<group>"; };
+		C2114C2F1CC100C5008226DA /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		C2114C301CC100C5008226DA /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		C2114C321CC100D9008226DA /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsModel.h; sourceTree = "<group>"; };
+		C2114C331CC100D9008226DA /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
+		C2114C351CC10771008226DA /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		C2114C361CC10771008226DA /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		C2114C381CC10D11008226DA /* NSString+Html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Html.h"; sourceTree = "<group>"; };
+		C2114C391CC10D11008226DA /* NSString+Html.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Html.m"; sourceTree = "<group>"; };
 		F218EAB2B28EA58C820D58EF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +167,8 @@
 		C2114BF91CC07D30008226DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2114C321CC100D9008226DA /* NewsModel.h */,
+				C2114C331CC100D9008226DA /* NewsModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -162,6 +176,10 @@
 		C2114BFA1CC07D3E008226DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C2114C2F1CC100C5008226DA /* NewsCell.h */,
+				C2114C301CC100C5008226DA /* NewsCell.m */,
+				C2114C351CC10771008226DA /* NewsViewController.h */,
+				C2114C361CC10771008226DA /* NewsViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -285,6 +303,8 @@
 		C2114C241CC082AC008226DA /* 其他 */ = {
 			isa = PBXGroup;
 			children = (
+				C2114C381CC10D11008226DA /* NSString+Html.h */,
+				C2114C391CC10D11008226DA /* NSString+Html.m */,
 				C2114C251CC082C3008226DA /* UIView+XMGext.h */,
 				C2114C261CC082C3008226DA /* UIView+XMGext.m */,
 			);
@@ -429,10 +449,14 @@
 				C2114C231CC08217008226DA /* DisiViewController.m in Sources */,
 				C2114C271CC082C3008226DA /* UIView+XMGext.m in Sources */,
 				C2114C0F1CC07E77008226DA /* FourthViewController.m in Sources */,
+				C2114C3A1CC10D11008226DA /* NSString+Html.m in Sources */,
 				C2114C151CC07E9D008226DA /* SecontViewController.m in Sources */,
 				C2114C1D1CC081F8008226DA /* DierViewController.m in Sources */,
 				C2114C121CC07E90008226DA /* ThirdViewController.m in Sources */,
 				C2114BE61CC07CF4008226DA /* AppDelegate.m in Sources */,
+				C2114C341CC100D9008226DA /* NewsModel.m in Sources */,
+				C2114C371CC10771008226DA /* NewsViewController.m in Sources */,
+				C2114C311CC100C5008226DA /* NewsCell.m in Sources */,
 				C2114C1A1CC081EC008226DA /* DiyiViewController.m in Sources */,
 				C2114BE31CC07CF4008226DA /* main.m in Sources */,
 				C2114BFE1CC07D62008226DA /* FirstViewController.m in Sources */,

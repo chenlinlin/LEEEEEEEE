@@ -10,4 +10,6 @@
 
 @interface DiyiViewController : UIViewController
 
+@property(nonatomic,strong)UIView *view11111;
+
 @end

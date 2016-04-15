@@ -7,30 +7,136 @@
 //
 
 #import "DiyiViewController.h"
+#import "NewsCell.h"
+#import "NewsModel.h"
+#import "NewsViewController.h"
+#import <UIImageView+WebCache.h>
+#define ScreenWidth    [[UIScreen mainScreen] bounds].size.width
+#define ScreenHeight   [[UIScreen mainScreen] bounds ].size.height
 
-@interface DiyiViewController ()
-
+@interface DiyiViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)UISegmentedControl *seg;
+@property(nonatomic,strong)UITableView *tabelView1;
+@property(nonatomic,strong)NSMutableArray *array;
+@property(nonatomic,assign)int temp;
 @end
 
 @implementation DiyiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor =[UIColor redColor];}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self data];
+    [self view1];
+    
+}
+-(void)view1{
+  
+    [self.view addSubview:self.view11111];
+    self.tabelView1 =[[UITableView alloc] initWithFrame:CGRectMake(0, 84, ScreenWidth, ScreenHeight-104) style:(UITableViewStylePlain)];
+    [self.view addSubview:self.tabelView1];
+    [self.tabelView1 registerClass:[NewsCell class] forCellReuseIdentifier:@"newscell"];
+    self.tabelView1.delegate=self;
+    self.tabelView1.dataSource =self;
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)data{
+    self.array =[NSMutableArray array];
+    if (self.temp !=0) {
+        self.temp+=20;
+        
+    }
+    NSURLSession *session =[NSURLSession sharedSession];
+    //创建url
+    NSString *urlstring =[NSString stringWithFormat:@"http://c.m.163.com/nc/article/list/T1348648517839/%d-20.html",self.temp];
+    
+    NSURL *url =[NSURL URLWithString:urlstring];
+    //通过URL初始化task 在block内处理数据
+    NSURLSessionTask *task =[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *dic =[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
+        NSArray *arr =dic[@"T1348648517839"];
+        for (NSDictionary *dic1 in arr) {
+            NewsModel *model =[[NewsModel alloc] init];
+            
+            [model setValuesForKeysWithDictionary:dic1];
+            
+            if (model.url ==nil) {
+                
+            }else{
+                [self.array addObject:model];
+                
+            }
+            
+            
+        }
+        //返回主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tabelView1 reloadData];
+        });
+    }];
+    
+    [task resume];
+    
+    
 }
-*/
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+   return self.array.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NewsCell *cell =[tableView dequeueReusableCellWithIdentifier:@"newscell"];
+    NewsModel *model =self.array[indexPath.row];
+    cell.titelLabel.text =model.ltitle;
+    cell.neirongLabel.text =model.title;
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgsrc]];
+    cell.shijianLabel.text =[NSString stringWithFormat:@"发布时间:%@",model.ptime];
+    return cell;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 130;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view2 =[[UIView alloc] initWithFrame:CGRectMake(100, 0, 50, 30)];
+    self.seg =[[UISegmentedControl alloc] initWithItems:@[@"最新",@"其他"]];
+    self.seg.frame =CGRectMake(ScreenWidth/2-50, 0, 100,30);
+    [self.seg addTarget:self action:@selector(segAction) forControlEvents:UIControlEventValueChanged];
+    self.seg.selectedSegmentIndex=0;
+    [view2 addSubview:self.seg];
+    return view2;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NewsViewController *newsVC=[[NewsViewController alloc] init];
+    NewsModel *model =self.array[indexPath.row];
+    newsVC.strID =model.docid;
+    newsVC.stringID =model.postid;
+newsVC.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:newsVC animated:YES];
+}
+
+-(void)segAction{
+    
+    switch (self.seg.selectedSegmentIndex) {
+        case 0:
+            NSLog(@"点了原创");
+            
+            break;
+        case 1:
+            NSLog(@"点了最新");
+            break;
+        default:
+            break;
+    }
+}
 
 @end

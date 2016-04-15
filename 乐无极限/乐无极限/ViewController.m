@@ -38,6 +38,7 @@
     third.tabBarItem.title =@"Vip交友";
     fourth.tabBarItem.title =@"文学";
     fifth.tabBarItem.title = @"我的";
+    first.navigationItem.title =@"精华";
     first.tabBarItem.image =[UIImage imageNamed:@"movie"];
     secont.tabBarItem.image =[UIImage imageNamed:@"movie"];
     third.tabBarItem.image =[UIImage imageNamed:@"movie"];
@@ -49,13 +50,7 @@
     UINavigationController *fourthNC = [[UINavigationController alloc] initWithRootViewController:fourth];
     UINavigationController *fifthNC = [[UINavigationController alloc] initWithRootViewController:fifth];
     self.viewControllers =@[firstNC,secontNC,thirdNC,fourthNC,fifthNC];
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
+  
     
     
 }
