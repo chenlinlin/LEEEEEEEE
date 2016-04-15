@@ -49,13 +49,7 @@
     UINavigationController *fourthNC = [[UINavigationController alloc] initWithRootViewController:fourth];
     UINavigationController *fifthNC = [[UINavigationController alloc] initWithRootViewController:fifth];
     self.viewControllers =@[firstNC,secontNC,thirdNC,fourthNC,fifthNC];
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
-    NSLog(@"fdgdfgdfgdfgdf");
+  
     
     
 }
