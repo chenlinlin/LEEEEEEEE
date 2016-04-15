@@ -8,7 +8,11 @@
 
 #import "DiyiViewController.h"
 
+#define ScreenWidth    [[UIScreen mainScreen] bounds].size.width
+#define ScreenHeight   [[UIScreen mainScreen] bounds ].size.height
+
 @interface DiyiViewController ()
+@property(nonatomic,strong)UISegmentedControl *seg;
 
 @end
 
@@ -16,21 +20,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor =[UIColor redColor];}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.view.backgroundColor =[UIColor redColor];
+self.seg =[[UISegmentedControl alloc] initWithItems:@[@"原创",@"最新"]];
+  
+self.seg.frame =CGRectMake(ScreenWidth/2-50, 80, 100, 30);
+[self.seg addTarget:self action:@selector(segAction) forControlEvents:UIControlEventValueChanged];
+self.seg.selectedSegmentIndex=0;
+    [self.view addSubview:self.seg];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)segAction{
+    
+    switch (self.seg.selectedSegmentIndex) {
+        case 0:
+            NSLog(@"点了原创");
+            break;
+            case 1:
+            NSLog(@"点了最新");
+            break;
+            
+        default:
+            break;
+    }
 }
-*/
 
 @end

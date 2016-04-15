@@ -12,8 +12,10 @@
 #import "DisanViewController.h"
 #import "DisiViewController.h"
 #import "UIView+XMGext.h"
+
 #define ScreenWidth    [[UIScreen mainScreen] bounds].size.width
 #define ScreenHeight   [[UIScreen mainScreen] bounds ].size.height
+
 @interface FirstViewController ()<UIScrollViewDelegate>
 
 @property(nonatomic,strong)UIScrollView *crollView;
@@ -33,10 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor colorWithRed:arc4random()%256/255.0 green:arc4random()%256/255.0 blue:arc4random()%256/255.0 alpha:1];
-    self.navigationItem.title =@"第一个";
+
     //初始化所有控制器
     [self view1];
-    
     //设置标签栏
     [self setupTitlesView];
     //底部的scrolView
@@ -70,10 +71,10 @@
 -(void)setupTitlesView{
     //标签栏整体
     UIView *titlesView =[[UIView alloc] init];
-    titlesView.backgroundColor =[[UIColor greenColor]colorWithAlphaComponent:0.8];
+    titlesView.backgroundColor =[UIColor greenColor];
     
-    titlesView.frame =CGRectMake(0,64, ScreenWidth, 30);
-    [self.view addSubview:titlesView];
+    titlesView.frame =CGRectMake(0,20, ScreenWidth, 44);
+    [self.navigationController.view addSubview: titlesView];
     self.titlesView =titlesView;
     //底部红色指示器
     self.indicatyorView =[[UIView alloc] init];
@@ -83,7 +84,7 @@
     self.indicatyorView.tag =-1;
     self.indicatyorView.y =titlesView.height -self.indicatyorView.height;
     //内部子标签
-    NSArray *titles =@[@"11",@"22",@"33",@"44"];
+    NSArray *titles =@[@"最新",@"段子",@"图片",@"视频"];
     CGFloat width =titlesView.width/titles.count;
     CGFloat height =titlesView.height;
     
@@ -121,7 +122,6 @@
     
 }
 -(void)titleClick:(UIButton *)but{
-    
     //修改按钮状态
     self.butt.enabled =YES;
     but.enabled =NO;
@@ -137,9 +137,7 @@
     offset.x =but.tag *self.conrentView.width;
     [self.conrentView setContentOffset:offset animated:YES];
     
-    
 }
-
 -(void)setpContenView{
     //不要自动调整inset
     self.automaticallyAdjustsScrollViewInsets =NO;
