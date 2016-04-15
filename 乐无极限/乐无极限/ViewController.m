@@ -38,7 +38,7 @@
     self.viewControllers =@[firstNC,secontNC,thirdNC,fourthNC];
 
     
-    
+    NSLog(@"fdgdfgdfgdfgdf");
     
     
     
