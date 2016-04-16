@@ -1,24 +1,22 @@
 //
-//  DierViewController.m
+//  JokeViewController.m
 //  乐无极限
 //
-//  Created by lanou3g on 16/4/15.
+//  Created by 羊羊羊～咩～ on 16/4/15.
 //  Copyright © 2016年 陈林林. All rights reserved.
 //
 
-#import "DierViewController.h"
+#import "JokeViewController.h"
 
-@interface DierViewController ()
+@interface JokeViewController ()
 
 @end
 
-@implementation DierViewController
+@implementation JokeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"段子";
-    
-    self.view.backgroundColor =[UIColor yellowColor];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
