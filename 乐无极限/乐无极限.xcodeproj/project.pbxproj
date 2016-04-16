@@ -29,6 +29,7 @@
 		C2114C341CC100D9008226DA /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C331CC100D9008226DA /* NewsModel.m */; };
 		C2114C371CC10771008226DA /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C361CC10771008226DA /* NewsViewController.m */; };
 		C2114C3A1CC10D11008226DA /* NSString+Html.m in Sources */ = {isa = PBXBuildFile; fileRef = C2114C391CC10D11008226DA /* NSString+Html.m */; };
+		C2B5E5351CC1D2E700830132 /* aa.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B5E5341CC1D2E700830132 /* aa.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,8 @@
 		C2114C361CC10771008226DA /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		C2114C381CC10D11008226DA /* NSString+Html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Html.h"; sourceTree = "<group>"; };
 		C2114C391CC10D11008226DA /* NSString+Html.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Html.m"; sourceTree = "<group>"; };
+		C2B5E5301CC1D13E00830132 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		C2B5E5341CC1D2E700830132 /* aa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aa.png; sourceTree = "<group>"; };
 		F218EAB2B28EA58C820D58EF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -303,12 +306,22 @@
 		C2114C241CC082AC008226DA /* 其他 */ = {
 			isa = PBXGroup;
 			children = (
+				C2B5E5311CC1D2B700830132 /* imgs */,
 				C2114C381CC10D11008226DA /* NSString+Html.h */,
 				C2114C391CC10D11008226DA /* NSString+Html.m */,
 				C2114C251CC082C3008226DA /* UIView+XMGext.h */,
 				C2114C261CC082C3008226DA /* UIView+XMGext.m */,
+				C2B5E5301CC1D13E00830132 /* Header.h */,
 			);
 			name = "其他";
+			sourceTree = "<group>";
+		};
+		C2B5E5311CC1D2B700830132 /* imgs */ = {
+			isa = PBXGroup;
+			children = (
+				C2B5E5341CC1D2E700830132 /* aa.png */,
+			);
+			name = imgs;
 			sourceTree = "<group>";
 		};
 		D78517268EBC182A83DF2DBD /* Pods */ = {
@@ -381,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B5E5351CC1D2E700830132 /* aa.png in Resources */,
 				C2114C171CC08165008226DA /* movie.png in Resources */,
 				C2114BF11CC07CF4008226DA /* LaunchScreen.storyboard in Resources */,
 				C2114BEE1CC07CF4008226DA /* Assets.xcassets in Resources */,

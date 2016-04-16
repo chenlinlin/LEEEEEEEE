@@ -12,10 +12,8 @@
 #import "DisanViewController.h"
 #import "DisiViewController.h"
 #import "UIView+XMGext.h"
-
 #define ScreenWidth    [[UIScreen mainScreen] bounds].size.width
 #define ScreenHeight   [[UIScreen mainScreen] bounds ].size.height
-
 @interface FirstViewController ()<UIScrollViewDelegate>
 
 @property(nonatomic,strong)UIScrollView *crollView;
