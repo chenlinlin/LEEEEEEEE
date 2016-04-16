@@ -10,7 +10,7 @@
 #import "NewsCell.h"
 #import "NewsModel.h"
 #import "NewsViewController.h"
-#import <UIImageView+WebCache.h>
+#import "Header.h"
 #define ScreenWidth    [[UIScreen mainScreen] bounds].size.width
 #define ScreenHeight   [[UIScreen mainScreen] bounds ].size.height
 
@@ -19,34 +19,51 @@
 @property(nonatomic,strong)UITableView *tabelView1;
 @property(nonatomic,strong)NSMutableArray *array;
 @property(nonatomic,assign)int temp;
+@property(nonatomic,strong)AFHTTPSessionManager *manager;
+
 @end
 
 @implementation DiyiViewController
+-(AFHTTPSessionManager *)manager{
+    if (_manager ==nil) {
+        _manager =[AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self data];
     [self view1];
-    
 }
 -(void)view1{
-  
+    
+    
     [self.view addSubview:self.view11111];
-    self.tabelView1 =[[UITableView alloc] initWithFrame:CGRectMake(0, 84, ScreenWidth, ScreenHeight-104) style:(UITableViewStylePlain)];
+    self.tabelView1 =[[UITableView alloc] initWithFrame:CGRectMake(0, 84, ScreenWidth, ScreenHeight-120) style:(UITableViewStylePlain)];
     [self.view addSubview:self.tabelView1];
     [self.tabelView1 registerClass:[NewsCell class] forCellReuseIdentifier:@"newscell"];
     self.tabelView1.delegate=self;
     self.tabelView1.dataSource =self;
+    //上刷新
+    self.tabelView1 .mj_header =[MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
+    //下加载
+    self.tabelView1 .mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(abc)];
+}
+-(void)loadNew{
+    self.temp =0;
+    [self data];
+}
+-(void)abc{
+    [self data];
     
 }
-
 -(void)data{
-    self.array =[NSMutableArray array];
-    if (self.temp !=0) {
-        self.temp+=20;
-        
+    if (self.temp ==0) {
+        self.array =[NSMutableArray array];
     }
+
     NSURLSession *session =[NSURLSession sharedSession];
     //创建url
     NSString *urlstring =[NSString stringWithFormat:@"http://c.m.163.com/nc/article/list/T1348648517839/%d-20.html",self.temp];
@@ -56,7 +73,9 @@
     NSURLSessionTask *task =[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *dic =[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
+        
         NSArray *arr =dic[@"T1348648517839"];
+        NSMutableArray *arrrrr =[NSMutableArray array];
         for (NSDictionary *dic1 in arr) {
             NewsModel *model =[[NewsModel alloc] init];
             
@@ -65,15 +84,23 @@
             if (model.url ==nil) {
                 
             }else{
-                [self.array addObject:model];
+                [arrrrr addObject:dic1];
                 
             }
-            
-            
+          
         }
+        NSArray *aaaaa =[NewsModel
+        mj_objectArrayWithKeyValuesArray:arrrrr];
+        [self.array addObjectsFromArray:aaaaa];
         //返回主线程
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.tabelView1.mj_header endRefreshing];
+            [self.tabelView1.mj_footer endRefreshing];
+            self.temp+=25;
+
             [self.tabelView1 reloadData];
+
         });
     }];
     
@@ -90,53 +117,24 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsCell *cell =[tableView dequeueReusableCellWithIdentifier:@"newscell"];
     NewsModel *model =self.array[indexPath.row];
-    cell.titelLabel.text =model.ltitle;
-    cell.neirongLabel.text =model.title;
-    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgsrc]];
+    cell.titelLabel.text =model.title;
+    cell.neirongLabel.text =model.ltitle;
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgsrc] placeholderImage:Image];
     cell.shijianLabel.text =[NSString stringWithFormat:@"发布时间:%@",model.ptime];
     return cell;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 130;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view2 =[[UIView alloc] initWithFrame:CGRectMake(100, 0, 50, 30)];
-    self.seg =[[UISegmentedControl alloc] initWithItems:@[@"最新",@"其他"]];
-    self.seg.frame =CGRectMake(ScreenWidth/2-50, 0, 100,30);
-    [self.seg addTarget:self action:@selector(segAction) forControlEvents:UIControlEventValueChanged];
-    self.seg.selectedSegmentIndex=0;
-    [view2 addSubview:self.seg];
-    return view2;
+    return 105;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsViewController *newsVC=[[NewsViewController alloc] init];
-    NewsModel *model =self.array[indexPath.row];
-    newsVC.strID =model.docid;
-    newsVC.stringID =model.postid;
-newsVC.hidesBottomBarWhenPushed = YES;
+    newsVC.model =self.array[indexPath.row];
     
     [self.navigationController pushViewController:newsVC animated:YES];
 }
 
--(void)segAction{
-    
-    switch (self.seg.selectedSegmentIndex) {
-        case 0:
-            NSLog(@"点了原创");
-            
-            break;
-        case 1:
-            NSLog(@"点了最新");
-            break;
-        default:
-            break;
-    }
-}
 
 @end

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class NewsModel;
 @interface NewsViewController : UIViewController
-@property(nonatomic,strong)NSString *strID;
-@property(nonatomic,strong)NSString *stringID;
 
+@property(nonatomic,strong)NewsModel *model;
 @end
